@@ -16,9 +16,11 @@ interface GameSceneProps {
   gameState: GameState
   stageType: StageType
   onHeckle?: (message: string) => void
+  mobileJoystick?: { x: number; y: number }
+  mobileAction?: 'mosh' | 'lift' | 'throw' | 'heckle' | 'jump' | null
 }
 
-export default function GameScene({ onCaught, onTroubleAction, gameState, stageType, onHeckle: onHeckleProp }: GameSceneProps) {
+export default function GameScene({ onCaught, onTroubleAction, gameState, stageType, onHeckle: onHeckleProp, mobileJoystick, mobileAction }: GameSceneProps) {
   const { camera } = useThree()
   const guardPositions = getGuardPositions(stageType)
   const [particles, setParticles] = useState<Array<{ id: number; type: 'can' | 'mosh' | 'capture' | 'lift' | 'heckle'; position: THREE.Vector3 }>>([])
@@ -86,6 +88,8 @@ export default function GameScene({ onCaught, onTroubleAction, gameState, stageT
         onLift={handleLift}
         onCanThrow={handleCanThrow}
         onHeckle={handleHeckle}
+        mobileJoystick={mobileJoystick}
+        mobileAction={mobileAction}
       />
 
       {/* セキュリティガード */}

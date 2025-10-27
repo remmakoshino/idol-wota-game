@@ -4,6 +4,8 @@ import GameScene from './components/GameScene'
 import GameUI from './components/GameUI'
 import MainMenu from './components/MainMenu'
 import MiniGame from './components/MiniGame'
+import VirtualJoystick from './components/VirtualJoystick'
+import MobileControls from './components/MobileControls'
 import { StageType } from './config/stages'
 
 export type GameState = 'menu' | 'playing' | 'minigame' | 'caught' | 'paused' | 'stageselect'
@@ -14,6 +16,8 @@ function App() {
   const [troubleActions, setTroubleActions] = useState(0)
   const [selectedStage, setSelectedStage] = useState<StageType>('livehouse')
   const [heckleMessage, setHeckleMessage] = useState<string | null>(null)
+  const [mobileJoystick, setMobileJoystick] = useState({ x: 0, y: 0 })
+  const [mobileAction, setMobileAction] = useState<'mosh' | 'lift' | 'throw' | 'heckle' | 'jump' | null>(null)
 
   const startGame = () => {
     setGameState('stageselect')
@@ -78,8 +82,21 @@ function App() {
                 setHeckleMessage(msg)
                 setTimeout(() => setHeckleMessage(null), 3000)
               }}
+              mobileJoystick={mobileJoystick}
+              mobileAction={mobileAction}
             />
           </Canvas>
+          
+          {/* モバイルコントロール */}
+          <VirtualJoystick 
+            onMove={(x, y) => setMobileJoystick({ x, y })}
+          />
+          <MobileControls 
+            onAction={(action) => {
+              setMobileAction(action)
+              setTimeout(() => setMobileAction(null), 100) // アクションをリセット
+            }}
+          />
           
           {/* 野次メッセージ表示 */}
           {heckleMessage && (

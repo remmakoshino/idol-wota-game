@@ -189,14 +189,14 @@ idol-wota-game/
 
 ### 公開URL
 ```
-https://YOUR_USERNAME.github.io/idol-wota-game/
+https://remmakoshino.github.io/idol-wota-game/
 ```
 
 ### デプロイ手順
 
 1. **GitHubリポジトリにプッシュ**
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/idol-wota-game.git
+git remote add origin https://github.com/remmakoshino/idol-wota-game.git
 git push -u origin main
 ```
 

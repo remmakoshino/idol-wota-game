@@ -11,9 +11,11 @@ interface PlayerProps {
   onLift?: () => void
   onCanThrow?: (targetPosition: THREE.Vector3) => void
   onHeckle?: (message: string) => void
+  mobileJoystick?: { x: number; y: number }
+  mobileAction?: 'mosh' | 'lift' | 'throw' | 'heckle' | 'jump' | null
 }
 
-export default function Player({ camera, onTroubleAction, gameState, onLift, onCanThrow, onHeckle }: PlayerProps) {
+export default function Player({ camera, onTroubleAction, gameState, onLift, onCanThrow, onHeckle, mobileJoystick, mobileAction }: PlayerProps) {
   const velocityRef = useRef(new THREE.Vector3(0, 0, 0))
   const position = useRef(new THREE.Vector3(0, 1, 0))
   const [keys, setKeys] = useState<{ [key: string]: boolean }>({})
@@ -74,7 +76,39 @@ export default function Player({ camera, onTroubleAction, gameState, onLift, onC
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('keyup', handleKeyUp)
     }
-  }, [gameState, onTroubleAction])
+  }, [gameState, onTroubleAction, onLift, onCanThrow, onHeckle, isLifted])
+
+  // モバイルアクションの処理
+  useEffect(() => {
+    if (gameState !== 'playing' || !mobileAction) return
+
+    if (mobileAction === 'mosh') {
+      onTroubleAction(100, position.current, 'mosh')
+    } else if (mobileAction === 'lift' && !isLifted) {
+      setIsLifted(true)
+      onTroubleAction(150, position.current, 'lift')
+      if (onLift) onLift()
+      setTimeout(() => setIsLifted(false), 2000)
+    } else if (mobileAction === 'throw') {
+      const stageCenter = new THREE.Vector3(0, 1, -15)
+      onTroubleAction(200, position.current, 'can')
+      if (onCanThrow) onCanThrow(stageCenter)
+    } else if (mobileAction === 'heckle') {
+      const heckleMessages = [
+        '男がいるなら、謝罪しろ〜！',
+        '責任から逃げるな！',
+        'メン地下彼氏は？',
+        '風俗に在籍ある？'
+      ]
+      const message = heckleMessages[Math.floor(Math.random() * heckleMessages.length)]
+      onTroubleAction(120, position.current, 'heckle')
+      if (onHeckle) onHeckle(message)
+    } else if (mobileAction === 'jump' && canJump.current && position.current.y <= 1.01 && !isLifted) {
+      velocityRef.current.y = 0.25
+      canJump.current = false
+      setTimeout(() => canJump.current = true, 500)
+    }
+  }, [mobileAction, gameState, onTroubleAction, onLift, onCanThrow, onHeckle, isLifted])
 
   useFrame((state) => {
     if (gameState !== 'playing') return
@@ -91,10 +125,17 @@ export default function Player({ camera, onTroubleAction, gameState, onLift, onC
     const right = new THREE.Vector3()
     right.crossVectors(forward, new THREE.Vector3(0, 1, 0))
 
+    // キーボード入力
     if (keys['w']) direction.add(forward)
     if (keys['s']) direction.sub(forward)
     if (keys['a']) direction.sub(right)
     if (keys['d']) direction.add(right)
+
+    // モバイルジョイスティック入力
+    if (mobileJoystick && (mobileJoystick.x !== 0 || mobileJoystick.y !== 0)) {
+      direction.add(forward.multiplyScalar(mobileJoystick.y))
+      direction.add(right.multiplyScalar(mobileJoystick.x))
+    }
 
     direction.normalize().multiplyScalar(speed)
 
