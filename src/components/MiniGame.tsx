@@ -222,25 +222,37 @@ export default function MiniGame({ onComplete }: MiniGameProps) {
                 zIndex: 5,
                 boxShadow: '0 4px 8px rgba(0,0,0,0.3)'
               }}>
-                {/* 缶のラベル（氷結風） */}
+                {/* 缶のラベル */}
                 <div style={{
                   position: 'absolute',
-                  top: '20px',
+                  top: '15px',
                   left: '50%',
                   transform: 'translateX(-50%)',
                   width: '60px',
-                  height: '60px',
+                  height: '70px',
                   backgroundColor: '#fff',
                   borderRadius: '5px',
                   display: 'flex',
+                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '24px',
-                  fontWeight: 'bold',
-                  color: '#2196f3',
-                  border: '2px solid #2196f3'
+                  border: '2px solid #ff1744'
                 }}>
-                  氷結
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    color: '#ff1744',
+                    marginBottom: '2px'
+                  }}>
+                    ストロング
+                  </div>
+                  <div style={{
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    color: '#d32f2f'
+                  }}>
+                    酒雑魚
+                  </div>
                 </div>
                 
                 {/* 缶の穴（下部） */}

@@ -51,7 +51,13 @@ export default function Player({ camera, onTroubleAction, gameState, onLift, onC
       // R: 野次
       if (e.key.toLowerCase() === 'r') {
         console.log('厄介行為: 野次！')
-        const message = '男がいるなら、謝罪しろ〜！'
+        const heckleMessages = [
+          '男がいるなら、謝罪しろ〜！',
+          '責任から逃げるな！',
+          'メン地下彼氏は？',
+          '風俗に在籍ある？'
+        ]
+        const message = heckleMessages[Math.floor(Math.random() * heckleMessages.length)]
         onTroubleAction(120, position.current, 'heckle')
         if (onHeckle) onHeckle(message)
       }

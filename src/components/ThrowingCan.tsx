@@ -63,10 +63,16 @@ export default function ThrowingCan({ startPosition, targetPosition, onComplete 
         <meshStandardMaterial color="#ffffff" />
       </mesh>
       
-      {/* ラベルのテキスト部分 */}
+      {/* ラベルのテキスト部分（赤） */}
       <mesh position={[0, 0.05, 0.08]} castShadow>
         <boxGeometry args={[0.1, 0.05, 0.005]} />
-        <meshStandardMaterial color="#4a90e2" />
+        <meshStandardMaterial color="#ff1744" />
+      </mesh>
+      
+      {/* ラベルのテキスト部分（赤） */}
+      <mesh position={[0, -0.02, 0.08]} castShadow>
+        <boxGeometry args={[0.1, 0.05, 0.005]} />
+        <meshStandardMaterial color="#d32f2f" />
       </mesh>
     </group>
   )
