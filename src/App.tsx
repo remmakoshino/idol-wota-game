@@ -107,9 +107,9 @@ function App() {
               transform: 'translate(-50%, -50%)',
               backgroundColor: 'rgba(255, 0, 0, 0.9)',
               color: 'white',
-              padding: '30px 60px',
+              padding: 'clamp(15px, 4vw, 30px) clamp(30px, 8vw, 60px)',
               borderRadius: '15px',
-              fontSize: '36px',
+              fontSize: 'clamp(18px, 5vw, 36px)',
               fontWeight: 'bold',
               fontFamily: 'Arial',
               textAlign: 'center',
@@ -117,7 +117,8 @@ function App() {
               boxShadow: '0 0 30px rgba(255, 0, 0, 0.8)',
               pointerEvents: 'none',
               zIndex: 1000,
-              animation: 'pulse 0.5s ease-in-out infinite'
+              animation: 'pulse 0.5s ease-in-out infinite',
+              maxWidth: '90vw'
             }}>
               {heckleMessage}
             </div>
@@ -153,29 +154,41 @@ function StageSelect({ onSelectStage, onBack }: {
       alignItems: 'center',
       justifyContent: 'center',
       color: 'white',
-      fontFamily: 'Arial'
+      fontFamily: 'Arial',
+      padding: 'clamp(10px, 2vw, 20px)',
+      overflow: 'auto'
     }}>
-      <h1 style={{ fontSize: '50px', marginBottom: '40px' }}>🎪 ステージ選択 🎪</h1>
+      <h1 style={{ fontSize: 'clamp(24px, 6vw, 50px)', marginBottom: 'clamp(20px, 4vh, 40px)', textAlign: 'center' }}>🎪 ステージ選択 🎪</h1>
       
-      <div style={{ display: 'flex', gap: '30px', marginBottom: '40px' }}>
+      <div style={{ 
+        display: 'flex', 
+        gap: 'clamp(15px, 3vw, 30px)', 
+        marginBottom: 'clamp(20px, 4vh, 40px)',
+        flexDirection: window.innerWidth < 768 ? 'column' : 'row',
+        width: '100%',
+        maxWidth: '900px',
+        justifyContent: 'center'
+      }}>
         {/* 小規模ライブハウス */}
         <div 
           onClick={() => onSelectStage('livehouse')}
           style={{
-            padding: '30px',
+            padding: 'clamp(15px, 3vw, 30px)',
             backgroundColor: 'rgba(46, 213, 115, 0.2)',
             border: '3px solid #2ed573',
             borderRadius: '15px',
             cursor: 'pointer',
             transition: 'transform 0.2s',
-            width: '250px'
+            flex: '1',
+            minWidth: '200px',
+            maxWidth: '300px'
           }}
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         >
-          <h2 style={{ fontSize: '28px', marginBottom: '15px' }}>🏠 ライブハウス</h2>
-          <p style={{ fontSize: '16px', marginBottom: '10px' }}>難易度: 易しい</p>
-          <p style={{ fontSize: '14px', opacity: 0.8 }}>
+          <h2 style={{ fontSize: 'clamp(18px, 4vw, 28px)', marginBottom: '15px' }}>🏠 ライブハウス</h2>
+          <p style={{ fontSize: 'clamp(12px, 2.5vw, 16px)', marginBottom: '10px' }}>難易度: 易しい</p>
+          <p style={{ fontSize: 'clamp(10px, 2vw, 14px)', opacity: 0.8 }}>
             小規模会場<br/>
             セキュリティ: 2人<br/>
             観客: 少なめ
@@ -186,20 +199,22 @@ function StageSelect({ onSelectStage, onBack }: {
         <div 
           onClick={() => onSelectStage('hall')}
           style={{
-            padding: '30px',
+            padding: 'clamp(15px, 3vw, 30px)',
             backgroundColor: 'rgba(255, 165, 2, 0.2)',
             border: '3px solid #ffa502',
             borderRadius: '15px',
             cursor: 'pointer',
             transition: 'transform 0.2s',
-            width: '250px'
+            flex: '1',
+            minWidth: '200px',
+            maxWidth: '300px'
           }}
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         >
-          <h2 style={{ fontSize: '28px', marginBottom: '15px' }}>🏛️ ホール</h2>
-          <p style={{ fontSize: '16px', marginBottom: '10px' }}>難易度: 普通</p>
-          <p style={{ fontSize: '14px', opacity: 0.8 }}>
+          <h2 style={{ fontSize: 'clamp(18px, 4vw, 28px)', marginBottom: '15px' }}>🏛️ ホール</h2>
+          <p style={{ fontSize: 'clamp(12px, 2.5vw, 16px)', marginBottom: '10px' }}>難易度: 普通</p>
+          <p style={{ fontSize: 'clamp(10px, 2vw, 14px)', opacity: 0.8 }}>
             中規模会場<br/>
             セキュリティ: 4人<br/>
             観客: 中程度
@@ -210,20 +225,22 @@ function StageSelect({ onSelectStage, onBack }: {
         <div 
           onClick={() => onSelectStage('arena')}
           style={{
-            padding: '30px',
+            padding: 'clamp(15px, 3vw, 30px)',
             backgroundColor: 'rgba(255, 63, 52, 0.2)',
             border: '3px solid #ff3f34',
             borderRadius: '15px',
             cursor: 'pointer',
             transition: 'transform 0.2s',
-            width: '250px'
+            flex: '1',
+            minWidth: '200px',
+            maxWidth: '300px'
           }}
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         >
-          <h2 style={{ fontSize: '28px', marginBottom: '15px' }}>🏟️ アリーナ</h2>
-          <p style={{ fontSize: '16px', marginBottom: '10px' }}>難易度: 難しい</p>
-          <p style={{ fontSize: '14px', opacity: 0.8 }}>
+          <h2 style={{ fontSize: 'clamp(18px, 4vw, 28px)', marginBottom: '15px' }}>🏟️ アリーナ</h2>
+          <p style={{ fontSize: 'clamp(12px, 2.5vw, 16px)', marginBottom: '10px' }}>難易度: 難しい</p>
+          <p style={{ fontSize: 'clamp(10px, 2vw, 14px)', opacity: 0.8 }}>
             大規模会場<br/>
             セキュリティ: 6人<br/>
             観客: 多い
@@ -234,8 +251,8 @@ function StageSelect({ onSelectStage, onBack }: {
       <button 
         onClick={onBack}
         style={{
-          padding: '15px 40px',
-          fontSize: '20px',
+          padding: 'clamp(10px, 2vh, 15px) clamp(20px, 5vw, 40px)',
+          fontSize: 'clamp(14px, 3vw, 20px)',
           cursor: 'pointer',
           backgroundColor: '#95a5a6',
           color: 'white',

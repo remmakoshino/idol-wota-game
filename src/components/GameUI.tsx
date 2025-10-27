@@ -41,20 +41,20 @@ export default function GameUI({
       {/* HUD */}
       <div style={{
         position: 'absolute',
-        top: '20px',
-        left: '20px',
+        top: 'clamp(10px, 2vh, 20px)',
+        left: 'clamp(10px, 2vw, 20px)',
         color: 'white',
         fontFamily: 'monospace',
-        fontSize: '20px',
+        fontSize: 'clamp(14px, 3vw, 20px)',
         textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
         pointerEvents: 'none'
       }}>
-        <div style={{ fontSize: '16px', marginBottom: '10px', color: '#00ff00' }}>
+        <div style={{ fontSize: 'clamp(12px, 2.5vw, 16px)', marginBottom: '10px', color: '#00ff00' }}>
           🎪 {stageConfig.name} ({stageConfig.difficulty === 'easy' ? '易' : stageConfig.difficulty === 'normal' ? '普' : '難'})
         </div>
         <div>スコア: {score}</div>
         <div>厄介行為: {troubleActions}回</div>
-        <div style={{ marginTop: '10px', fontSize: '14px' }}>
+        <div style={{ marginTop: '10px', fontSize: 'clamp(12px, 2.5vw, 14px)' }}>
           <div>危険度: {'🔴'.repeat(Math.min(troubleActions, 5))}</div>
         </div>
       </div>
@@ -108,16 +108,16 @@ export default function GameUI({
           fontFamily: 'Arial',
           pointerEvents: 'auto'
         }}>
-          <h1 style={{ fontSize: '60px', marginBottom: '20px' }}>捕まった！</h1>
-          <div style={{ fontSize: '30px', marginBottom: '40px' }}>
+          <h1 style={{ fontSize: 'clamp(30px, 8vw, 60px)', marginBottom: 'clamp(10px, 3vh, 20px)' }}>捕まった!</h1>
+          <div style={{ fontSize: 'clamp(18px, 5vw, 30px)', marginBottom: 'clamp(20px, 5vh, 40px)' }}>
             <p>最終スコア: {score}</p>
             <p>厄介行為: {troubleActions}回</p>
           </div>
           <button 
             onClick={onBackToMenu}
             style={{
-              padding: '15px 40px',
-              fontSize: '20px',
+              padding: 'clamp(10px, 2vh, 15px) clamp(20px, 5vw, 40px)',
+              fontSize: 'clamp(14px, 3vw, 20px)',
               cursor: 'pointer',
               backgroundColor: '#ff006e',
               color: 'white',
@@ -147,13 +147,13 @@ export default function GameUI({
           fontFamily: 'Arial',
           pointerEvents: 'auto'
         }}>
-          <h1 style={{ fontSize: '60px', marginBottom: '40px' }}>一時停止</h1>
-          <div style={{ display: 'flex', gap: '20px' }}>
+          <h1 style={{ fontSize: 'clamp(30px, 8vw, 60px)', marginBottom: 'clamp(20px, 5vh, 40px)' }}>一時停止</h1>
+          <div style={{ display: 'flex', gap: 'clamp(10px, 3vw, 20px)', flexWrap: 'wrap', justifyContent: 'center' }}>
             <button 
               onClick={onResume}
               style={{
-                padding: '15px 40px',
-                fontSize: '20px',
+                padding: 'clamp(10px, 2vh, 15px) clamp(20px, 5vw, 40px)',
+                fontSize: 'clamp(14px, 3vw, 20px)',
                 cursor: 'pointer',
                 backgroundColor: '#06ffa5',
                 color: 'black',
@@ -166,8 +166,8 @@ export default function GameUI({
             <button 
               onClick={onBackToMenu}
               style={{
-                padding: '15px 40px',
-                fontSize: '20px',
+                padding: 'clamp(10px, 2vh, 15px) clamp(20px, 5vw, 40px)',
+                fontSize: 'clamp(14px, 3vw, 20px)',
                 cursor: 'pointer',
                 backgroundColor: '#ff006e',
                 color: 'white',
@@ -185,10 +185,10 @@ export default function GameUI({
       {gameState === 'playing' && (
         <div style={{
           position: 'absolute',
-          top: '20px',
-          right: '20px',
+          top: 'clamp(10px, 2vh, 20px)',
+          right: 'clamp(10px, 2vw, 20px)',
           color: 'white',
-          fontSize: '14px',
+          fontSize: 'clamp(10px, 2vw, 14px)',
           textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
         }}>
           ESCキー: ポーズ

@@ -17,35 +17,39 @@ export default function MainMenu({ onStartGame, onStartMiniGame }: MainMenuProps
       fontFamily: 'Arial'
     }}>
       <h1 style={{ 
-        fontSize: '60px', 
-        marginBottom: '20px',
-        textShadow: '4px 4px 8px rgba(0,0,0,0.5)'
+        fontSize: 'clamp(24px, 6vw, 60px)', 
+        marginBottom: 'clamp(10px, 2vh, 20px)',
+        textShadow: '4px 4px 8px rgba(0,0,0,0.5)',
+        textAlign: 'center',
+        padding: '0 clamp(10px, 2vw, 20px)'
       }}>
         🎤 アイドルヲタク逃走ゲーム 🏃
       </h1>
       
       <p style={{ 
-        fontSize: '20px', 
-        marginBottom: '50px',
+        fontSize: 'clamp(12px, 3vw, 20px)', 
+        marginBottom: 'clamp(20px, 5vh, 50px)',
         textAlign: 'center',
-        maxWidth: '600px'
+        maxWidth: '90vw',
+        padding: '0 clamp(10px, 2vw, 20px)'
       }}>
-        ライブ会場で厄介行為を行い、マッチョなセキュリティスタッフから逃げろ！
+        ライブ会場で厄介行為を行い、マッチョなセキュリティスタッフから逃げろ!
       </p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(10px, 2vh, 20px)', alignItems: 'center', width: '90%', maxWidth: '400px' }}>
         <button 
           onClick={onStartGame}
           style={{
-            padding: '20px 60px',
-            fontSize: '24px',
+            padding: 'clamp(12px, 2vh, 20px) clamp(30px, 8vw, 60px)',
+            fontSize: 'clamp(16px, 3.5vw, 24px)',
             cursor: 'pointer',
             backgroundColor: '#ff006e',
             color: 'white',
             border: 'none',
             borderRadius: '10px',
             boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
-            transition: 'transform 0.2s'
+            transition: 'transform 0.2s',
+            width: '100%'
           }}
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -56,15 +60,16 @@ export default function MainMenu({ onStartGame, onStartMiniGame }: MainMenuProps
         <button 
           onClick={onStartMiniGame}
           style={{
-            padding: '20px 60px',
-            fontSize: '24px',
+            padding: 'clamp(12px, 2vh, 20px) clamp(30px, 8vw, 60px)',
+            fontSize: 'clamp(16px, 3.5vw, 24px)',
             cursor: 'pointer',
             backgroundColor: '#06ffa5',
             color: 'black',
             border: 'none',
             borderRadius: '10px',
             boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
-            transition: 'transform 0.2s'
+            transition: 'transform 0.2s',
+            width: '100%'
           }}
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -74,10 +79,11 @@ export default function MainMenu({ onStartGame, onStartMiniGame }: MainMenuProps
       </div>
 
       <div style={{ 
-        marginTop: '60px', 
-        fontSize: '14px',
+        marginTop: 'clamp(20px, 5vh, 60px)', 
+        fontSize: 'clamp(10px, 2vw, 14px)',
         textAlign: 'center',
-        opacity: 0.8
+        opacity: 0.8,
+        padding: '0 clamp(10px, 2vw, 20px)'
       }}>
         <p>⚠️ このゲームはフィクションです</p>
         <p>実際の会場では絶対に厄介行為をしないでください</p>

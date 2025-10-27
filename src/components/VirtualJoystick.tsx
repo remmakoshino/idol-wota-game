@@ -92,10 +92,10 @@ export default function VirtualJoystick({ onMove }: VirtualJoystickProps) {
       ref={joystickRef}
       style={{
         position: 'fixed',
-        bottom: '80px',
-        left: '80px',
-        width: '120px',
-        height: '120px',
+        bottom: 'clamp(20px, 5vh, 80px)',
+        left: 'clamp(20px, 3vw, 80px)',
+        width: 'clamp(80px, 15vw, 120px)',
+        height: 'clamp(80px, 15vw, 120px)',
         borderRadius: '50%',
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         border: '3px solid rgba(255, 255, 255, 0.5)',
@@ -108,8 +108,8 @@ export default function VirtualJoystick({ onMove }: VirtualJoystickProps) {
     >
       <div
         style={{
-          width: '50px',
-          height: '50px',
+          width: '40%',
+          height: '40%',
           borderRadius: '50%',
           backgroundColor: 'rgba(255, 255, 255, 0.8)',
           position: 'absolute',

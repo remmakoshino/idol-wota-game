@@ -14,15 +14,15 @@ export default function MobileControls({ onAction }: MobileControlsProps) {
   }
 
   const buttonStyle = (action: string): React.CSSProperties => ({
-    width: '60px',
-    height: '60px',
+    width: 'clamp(50px, 10vw, 70px)',
+    height: 'clamp(50px, 10vw, 70px)',
     borderRadius: '50%',
     border: '3px solid rgba(255, 255, 255, 0.8)',
     backgroundColor: pressedButton === action 
       ? 'rgba(255, 100, 100, 0.9)' 
       : 'rgba(255, 255, 255, 0.3)',
     color: 'white',
-    fontSize: '24px',
+    fontSize: 'clamp(18px, 4vw, 24px)',
     fontWeight: 'bold',
     display: 'flex',
     alignItems: 'center',
@@ -36,7 +36,7 @@ export default function MobileControls({ onAction }: MobileControlsProps) {
   })
 
   const labelStyle = {
-    fontSize: '10px',
+    fontSize: 'clamp(8px, 2vw, 10px)',
     fontWeight: 'normal',
     marginTop: '2px',
     color: 'rgba(255, 255, 255, 0.9)'
@@ -44,14 +44,14 @@ export default function MobileControls({ onAction }: MobileControlsProps) {
 
   return (
     <>
-      {/* 右側: 厄介行為ボタン */}
+      {/* 厄介行為ボタングループ(右下) */}
       <div style={{
         position: 'fixed',
-        bottom: '20px',
-        right: '20px',
+        bottom: 'clamp(15px, 3vh, 20px)',
+        right: 'clamp(15px, 3vw, 20px)',
         display: 'grid',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '15px',
+        gap: 'clamp(10px, 2vw, 15px)',
         zIndex: 1000,
         touchAction: 'none'
       }}>
@@ -100,14 +100,14 @@ export default function MobileControls({ onAction }: MobileControlsProps) {
         </button>
       </div>
 
-      {/* ジャンプボタン（左下、ジョイスティックの上） */}
+      {/* ジャンプボタン(左下、ジョイスティックの上) */}
       <button
         onTouchStart={() => handleButtonPress('jump')}
         style={{
           ...buttonStyle('jump'),
           position: 'fixed',
-          bottom: '220px',
-          left: '80px',
+          bottom: 'clamp(120px, 20vh, 220px)',
+          left: 'clamp(20px, 3vw, 80px)',
           zIndex: 1000
         }}
       >
